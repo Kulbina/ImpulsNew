@@ -79,6 +79,10 @@ int main()
 		{
 			qqx1[k][i] = 4 * exp(-pow((ks[i] / gam), 2))*exp(-bet * pow((k - ll), 2));
 			qqx2[k][i] = 4 * exp(-pow(((ks[i] - u * ht) / gam), 2))*exp(-bet * pow((k - ll), 2));
+		}
+	for (int k = 1; k <= lll; k++)
+		for (int i = 0; i <= kz; i++)
+		{
 			qqy1[k][i] = 0.0;
 			qqy2[k][i] = 0.0;
 		}
@@ -161,6 +165,8 @@ int main()
 	double max = per[0][0];
 	double norm = 0.0;
 	//double per = 0.0;
+
+
 #pragma omp parallel
 	for (int k = 1; k <= lll; k++)
 		for (int i = 2; i <= kz - 2; i++)
@@ -180,19 +186,11 @@ int main()
 			}
 			//cout << "max = " << max << 	
 		}
+
 #pragma omp parallel
-	for (int k = 0; k <1; k++)
+	for (int k = 0; k <= lll; k++)
 	{
-		for (int i = 0; i <=2; i++)
-		{
-			file2 << setw(6) << 0 << ";";
-		}
-		file2 << std::endl;
-	}
-#pragma omp parallel
-	for (int k = 1; k <= lll; k++)
-	{
-		for (int i = 2; i <= kz - 2; i++)
+		for (int i = 0 ; i <= kz - 2; i++)
 		{
 			norm = per[k][i] / max;
 			if (norm >= 0)
